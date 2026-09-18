@@ -34,3 +34,11 @@ All solutions in **Python3** (stdin/stdout style).
 ## 🔗 Related
 
 - [LeetCode Solutions](https://github.com/jasonjose007/Leetcode)
+
+
+### CodeChef
+| Difficulty | Solved |
+|------------|--------|
+| 🟢 Easy | 1 |
+| 🟡 Medium | 0 |
+| **Total** | **1** |
