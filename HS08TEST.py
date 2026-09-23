@@ -1,22 +1,21 @@
 # ATM
 # Platform: CodeChef
 # Difficulty: Easy
+# Topics: Basic Programming Concepts
 
 import sys
 
-def solve():
+def main():
     input_data = sys.stdin.read().split()
     if not input_data:
         return
-    X = int(input_data[0])
-    Y = float(input_data[1])
+    x = int(input_data[0])
+    y = float(input_data[1])
     
-    if X % 5 == 0 and Y >= X + 0.50:
-        ans = Y - X - 0.50
-    else:
-        ans = Y
+    if x % 5 == 0 and x + 0.50 <= y:
+        y -= x + 0.50
         
-    print(f"{ans:.2f}")
+    print(f"{y:.2f}")
 
 if __name__ == '__main__':
-    solve()
+    main()
