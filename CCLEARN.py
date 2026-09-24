@@ -1,14 +1,14 @@
 # CodeChef Learn Problem Solving
 # Platform: CodeChef
 # Difficulty: Easy
+# Topics: Mathematics
 
 import sys
 
 def main():
-    input_data = sys.stdin.read().split()
-    if input_data:
-        n = int(input_data[0])
-        print(2 * n)
+    input = sys.stdin.read
+    n = int(input().strip())
+    print(n * 2)
 
 if __name__ == '__main__':
     main()
