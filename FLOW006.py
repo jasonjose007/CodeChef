@@ -1,10 +1,11 @@
 # Sum of Digits
 # Platform: CodeChef
 # Difficulty: Easy
+# Topics: Mathematics, Algorithms
 
 import sys
 
-def solve():
+def main():
     input_data = sys.stdin.read().split()
     if not input_data:
         return
@@ -12,9 +13,8 @@ def solve():
     results = []
     for i in range(1, t + 1):
         s = input_data[i]
-        digit_sum = sum(int(char) for char in s)
-        results.append(str(digit_sum))
-    print('\n'.join(results))
+        results.append(str(sum(ord(c) - 48 for c in s)))
+    sys.stdout.write('\n'.join(results) + '\n')
 
 if __name__ == '__main__':
-    solve()
+    main()
