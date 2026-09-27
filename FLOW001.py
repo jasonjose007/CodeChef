@@ -1,23 +1,25 @@
 # Add Two Numbers
 # Platform: CodeChef
 # Difficulty: Easy
+# Topics: Algorithms
 
 import sys
 
-def solve():
+def main():
     input_data = sys.stdin.read().split()
     if not input_data:
         return
-    t = int(input_data[0])
-    results = []
+    
+    T = int(input_data[0])
     idx = 1
-    for _ in range(t):
-        if idx + 1 < len(input_data):
-            a = int(input_data[idx])
-            b = int(input_data[idx+1])
-            results.append(str(a + b))
-            idx += 2
-    print('\n'.join(results))
+    out = []
+    for _ in range(T):
+        A = int(input_data[idx])
+        B = int(input_data[idx+1])
+        idx += 2
+        out.append(str(A + B))
+        
+    print('\n'.join(out))
 
 if __name__ == '__main__':
-    solve()
+    main()
