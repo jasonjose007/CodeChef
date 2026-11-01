@@ -39,6 +39,6 @@ All solutions in **Python3** (stdin/stdout style).
 ### CodeChef
 | Difficulty | Solved |
 |------------|--------|
-| 🟢 Easy | 52 |
+| 🟢 Easy | 53 |
 | 🟡 Medium | 0 |
-| **Total** | **52** |
+| **Total** | **53** |
