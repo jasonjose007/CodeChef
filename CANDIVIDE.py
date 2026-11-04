@@ -12,16 +12,15 @@ def solve():
         return
     
     t = int(data[0])
-    results = []
-    
+    out = []
     for i in range(1, t + 1):
         n = int(data[i])
         if n % 3 == 0:
-            results.append("YES")
+            out.append("YES")
         else:
-            results.append("NO")
+            out.append("NO")
             
-    print('\n'.join(results))
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     solve()
