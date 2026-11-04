@@ -40,5 +40,5 @@ All solutions in **Python3** (stdin/stdout style).
 | Difficulty | Solved |
 |------------|--------|
 | 🟢 Easy | 65 |
-| 🟡 Medium | 0 |
-| **Total** | **65** |
+| 🟡 Medium | 1 |
+| **Total** | **66** |
