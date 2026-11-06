@@ -10,15 +10,17 @@ def solve():
     data = input().split()
     if not data:
         return
+    
     t = int(data[0])
-    out = []
+    results = []
     for i in range(1, t + 1):
         x = int(data[i])
         if x > 98:
-            out.append("YES")
+            results.append("YES")
         else:
-            out.append("NO")
-    print('\n'.join(out))
+            results.append("NO")
+            
+    print('\n'.join(results))
 
 if __name__ == '__main__':
     solve()
