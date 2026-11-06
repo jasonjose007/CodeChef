@@ -5,19 +5,18 @@
 
 import sys
 
-def main():
+def solve():
     input_data = sys.stdin.read().split()
     if not input_data:
         return
     
-    T = int(input_data[0])
-    results = []
-    for i in range(1, T + 1):
-        N = int(input_data[2 * i - 1])
-        X = int(input_data[2 * i])
-        results.append(str(N - X))
-        
-    print('\n'.join(results))
+    t = int(input_data[0])
+    idx = 1
+    for _ in range(t):
+        n = int(input_data[idx])
+        x = int(input_data[idx+1])
+        idx += 2
+        print(n - x)
 
 if __name__ == '__main__':
-    main()
+    solve()
