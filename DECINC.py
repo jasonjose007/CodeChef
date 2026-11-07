@@ -3,8 +3,14 @@
 # Difficulty: Easy
 # Topics: Basic Programming Concepts
 
-N = int(input())
-if N % 4 == 0:
-    print(N + 1)
-else:
-    print(N - 1)
+import sys
+
+def main():
+    n = int(sys.stdin.readline())
+    if n % 4 == 0:
+        print(n + 1)
+    else:
+        print(n - 1)
+
+if __name__ == '__main__':
+    main()
