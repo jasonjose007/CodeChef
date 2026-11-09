@@ -6,25 +6,21 @@
 import sys
 
 def main():
-    input_data = sys.stdin.read().split()
-    if not input_data:
+    input = sys.stdin.read
+    data = input().split()
+    if not data:
         return
-    
-    t = int(input_data[0])
+    t = int(data[0])
     out = []
-    idx = 1
-    for _ in range(t):
-        x = int(input_data[idx])
-        y = int(input_data[idx+1])
-        idx += 2
-        
+    for i in range(1, 2 * t + 1, 2):
+        x = int(data[i])
+        y = int(data[i+1])
         if y > x:
             out.append("PROFIT")
         elif y < x:
             out.append("LOSS")
         else:
             out.append("NEUTRAL")
-            
     print('\n'.join(out))
 
 if __name__ == '__main__':
