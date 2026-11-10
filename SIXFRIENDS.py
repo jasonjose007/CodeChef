@@ -11,7 +11,7 @@ def solve():
         return
     
     t = int(input_data[0])
-    out = []
+    results = []
     idx = 1
     for _ in range(t):
         x = int(input_data[idx])
@@ -21,9 +21,9 @@ def solve():
         cost_double = 3 * x
         cost_triple = 2 * y
         
-        out.append(str(min(cost_double, cost_triple)))
+        results.append(str(min(cost_double, cost_triple)))
         
-    print('\n'.join(out))
+    print('\n'.join(results))
 
 if __name__ == '__main__':
     solve()
