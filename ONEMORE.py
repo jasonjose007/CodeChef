@@ -5,95 +5,107 @@
 
 import sys
 
-MOD = 10**9 + 7
 
-def count_spanning_trees(n, edges):
-    if n == 1:
+def det_mod(mat, mod=1000000007):
+    n = len(mat)
+    if n == 0:
         return 1
-    deg = [0] * n
-    adj = [[0] * n for _ in range(n)]
-    for u, v in edges:
-        u -= 1
-        v -= 1
-        adj[u][v] += 1
-        adj[v][u] += 1
-        deg[u] += 1
-        deg[v] += 1
-
-    m = n - 1
-    mat = [[0] * m for _ in range(m)]
-    for i in range(m):
-        for j in range(m):
-            if i == j:
-                mat[i][j] = (deg[i] - adj[i][i]) % MOD
-            else:
-                mat[i][j] = (-adj[i][j]) % MOD
-
-    det = 1
-    for i in range(m):
-        pivot = i
-        while pivot < m and mat[pivot][i] == 0:
-            pivot += 1
-        if pivot == m:
+    res = 1
+    for i in range(n):
+        pivot = -1
+        for j in range(i, n):
+            if mat[j][i] != 0:
+                pivot = j
+                break
+        if pivot == -1:
             return 0
         if pivot != i:
             mat[i], mat[pivot] = mat[pivot], mat[i]
-            det = (MOD - det) % MOD
-        det = (det * mat[i][i]) % MOD
-        inv = pow(mat[i][i], MOD - 2, MOD)
-        for j in range(i + 1, m):
+            res = (mod - res) % mod
+        val = mat[i][i]
+        res = (res * val) % mod
+        inv = pow(val, mod - 2, mod)
+        row_i = mat[i]
+        for j in range(i + 1, n):
             if mat[j][i] != 0:
-                factor = (mat[j][i] * inv) % MOD
-                for k in range(i, m):
-                    mat[j][k] = (mat[j][k] - factor * mat[i][k]) % MOD
-    return det % MOD
+                factor = (mat[j][i] * inv) % mod
+                row_j = mat[j]
+                for k in range(i + 1, n):
+                    row_j[k] = (row_j[k] - factor * row_i[k]) % mod
+    return res
 
-def solve():
-    input_data = sys.stdin.read().split()
-    if not input_data:
+
+def count_spanning_trees(n, edges, mod=1000000007):
+    if n <= 1:
+        return 1
+    if len(edges) < n - 1:
+        return 0
+    zero_indexed = any(u == 0 or v == 0 for u, v in edges)
+    mat = [[0] * (n - 1) for _ in range(n - 1)]
+    for u, v in edges:
+        if not zero_indexed:
+            u -= 1
+            v -= 1
+        if u == v:
+            continue
+        if u < n - 1:
+            mat[u][u] = (mat[u][u] + 1) % mod
+        if v < n - 1:
+            mat[v][v] = (mat[v][v] + 1) % mod
+        if u < n - 1 and v < n - 1:
+            mat[u][v] = (mat[u][v] - 1) % mod
+            mat[v][u] = (mat[v][u] - 1) % mod
+    return det_mod(mat, mod)
+
+
+def main():
+    data = sys.stdin.read()
+    if not data.strip():
         return
+    lines = [line.strip() for line in data.splitlines() if line.strip()]
+    first_parts = lines[0].split()
 
-    try:
-        t = int(input_data[0])
-        if len(input_data) == t + 1:
-            out = []
-            for i in range(1, t + 1):
-                x = int(input_data[i])
-                out.append("YES" if x > 24 else "NO")
-            print("\n".join(out))
-            return
-    except Exception:
-        pass
-
-    # Fallback: Matrix Tree Theorem for graph spanning trees
-    tokens = [int(x) for x in input_data]
-    idx = 0
-    # Determine if first token is T
-    # Check if remaining tokens match a single graph or multiple
-    n = tokens[idx]
-    m = tokens[idx + 1]
-    if len(tokens) == 2 + 2 * m:
-        # Single graph without T
+    if len(first_parts) == 2:
+        tokens = data.split()
+        n = int(tokens[0])
+        m = int(tokens[1])
         edges = []
         idx = 2
         for _ in range(m):
-            edges.append((tokens[idx], tokens[idx + 1]))
+            u = int(tokens[idx])
+            v = int(tokens[idx + 1])
             idx += 2
+            edges.append((u, v))
         print(count_spanning_trees(n, edges))
-    else:
-        # Multiple test cases with T
-        t = tokens[0]
-        idx = 1
-        out = []
-        for _ in range(t):
-            n = tokens[idx]
-            m = tokens[idx + 1]
-            idx += 2
-            edges = []
-            for _ in range(m):
-                edges.append((tokens[idx], tokens[idx + 1]))
+    elif len(first_parts) == 1:
+        if len(lines) == 1:
+            return
+        second_parts = lines[1].split()
+        tokens = data.split()
+        if len(second_parts) == 2:
+            t = int(tokens[0])
+            idx = 1
+            out = []
+            for _ in range(t):
+                n = int(tokens[idx])
+                m = int(tokens[idx + 1])
                 idx += 2
-            out.append(str(count_spanning_trees(n, edges)))
-        print("\n".join(out))
+                edges = []
+                for _ in range(m):
+                    u = int(tokens[idx])
+                    v = int(tokens[idx + 1])
+                    idx += 2
+                    edges.append((u, v))
+                out.append(str(count_spanning_trees(n, edges)))
+            print("\n".join(out))
+        else:
+            t = int(tokens[0])
+            out = []
+            for i in range(1, min(len(tokens), t + 1)):
+                x = int(tokens[i])
+                out.append("Yes" if x > 24 else "No")
+            print("\n".join(out))
 
-solve()
+
+if __name__ == "__main__":
+    main()
