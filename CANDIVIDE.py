@@ -5,22 +5,24 @@
 
 import sys
 
-def solve():
-    input = sys.stdin.read
-    data = input().split()
-    if not data:
-        return
-    
-    t = int(data[0])
-    out = []
-    for i in range(1, t + 1):
-        n = int(data[i])
-        if n % 3 == 0:
-            out.append("YES")
-        else:
-            out.append("NO")
-            
-    print('\n'.join(out))
 
-if __name__ == '__main__':
-    solve()
+def main():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+
+    T = int(input_data[0])
+    results = []
+
+    for i in range(1, T + 1):
+        N = int(input_data[i])
+        if N % 3 == 0:
+            results.append("YES")
+        else:
+            results.append("NO")
+
+    print("\n".join(results))
+
+
+if __name__ == "__main__":
+    main()
