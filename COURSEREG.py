@@ -4,28 +4,21 @@
 # Topics: Basic Programming Concepts, Mathematics, Basic Math
 
 import sys
+input = sys.stdin.readline
 
 def solve():
-    input_data = sys.stdin.read().split()
-    if not input_data:
+    line = input().strip()
+    if not line:
         return
-    
-    T = int(input_data[0])
-    idx = 1
-    
+    t = int(line)
     out = []
-    for _ in range(T):
-        N = int(input_data[idx])
-        M = int(input_data[idx+1])
-        K = int(input_data[idx+2])
-        idx += 3
-        
-        if N + K <= M:
-            out.append("YES")
+    for _ in range(t):
+        n, m, k = map(int, input().split())
+        if n + k <= m:
+            out.append("Yes")
         else:
-            out.append("NO")
-            
-    print('\n'.join(out))
+            out.append("No")
+    sys.stdout.write("\n".join(out) + "\n")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     solve()
