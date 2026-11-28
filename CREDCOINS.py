@@ -5,25 +5,12 @@
 
 import sys
 
-def solve():
-    input_data = sys.stdin.read().split()
-    if not input_data:
-        return
-    
-    t = int(input_data[0])
-    idx = 1
-    out = []
-    
+def main():
+    input = sys.stdin.readline
+    t = int(input())
     for _ in range(t):
-        x = int(input_data[idx])
-        y = int(input_data[idx+1])
-        idx += 2
-        
-        total_coins = x * y
-        bags = total_coins // 100
-        out.append(str(bags))
-        
-    print('\n'.join(out))
+        x, y = map(int, input().split())
+        print((x * y) // 100)
 
 if __name__ == '__main__':
-    solve()
+    main()
